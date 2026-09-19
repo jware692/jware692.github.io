@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joshua Ware - Resume</title>
+  <title>Joshua Ware | Software Engineer & Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --accent: #2563eb;
-      --border: #e2e8f0;
-      --tag-bg: #f1f5f9;
-      --tag-text: #334155;
+      --bg: #0b0f19;
+      --card-bg: rgba(18, 24, 39, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(30, 41, 59, 0.85);
+      --primary: #38bdf8;
+      --primary-glow: rgba(56, 189, 248, 0.15);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --tag-bg: rgba(56, 189, 248, 0.1);
+      --tag-text: #7dd3fc;
     }
 
     * {
@@ -23,330 +29,429 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      padding: 40px 20px;
+      padding: 60px 20px;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 85% 65%, rgba(99, 102, 241, 0.06) 0%, transparent 40%);
+      background-attachment: fixed;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 880px;
       margin: 0 auto;
-      background: var(--card-bg);
-      padding: 48px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border);
     }
 
-    header {
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 24px;
-      margin-bottom: 32px;
+    /* Hero Section */
+    .hero {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 20px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
     }
 
     h1 {
-      font-size: 2.25rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.5px;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 18px;
     }
 
     .contact-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px 20px;
-      margin-top: 10px;
-      font-size: 0.95rem;
-      color: var(--text-muted);
+      gap: 12px;
+      margin-top: 20px;
     }
 
-    .contact-bar a {
-      color: var(--accent);
-      text-decoration: none;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-size: 0.88rem;
       font-weight: 500;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
     }
 
-    .contact-bar a:hover {
-      text-decoration: underline;
+    .btn:hover {
+      background: var(--primary-glow);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
     }
 
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Section Styles */
     section {
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
-    h2 {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent);
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 4px;
-    }
-
-    .item {
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
       margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .item:last-child {
-      margin-bottom: 0;
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--card-border);
     }
 
-    .item-header {
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(8px);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: flex-start;
+      margin-bottom: 10px;
       flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .item-title {
+    .card-title {
+      font-size: 1.15rem;
       font-weight: 600;
-      font-size: 1.05rem;
-      color: var(--text);
+      color: #ffffff;
     }
 
-    .item-title a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-left: 6px;
-    }
-
-    .item-title a:hover {
-      text-decoration: underline;
-    }
-
-    .item-subtitle {
-      font-weight: 500;
+    .date-badge {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
     }
 
-    .item-date {
-      font-size: 0.875rem;
-      color: var(--text-muted);
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
     }
 
-    .tech-stack {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      margin-top: 2px;
-      margin-bottom: 6px;
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 3px 8px;
+      border-radius: 4px;
     }
 
     ul {
-      margin-top: 8px;
-      padding-left: 20px;
+      padding-left: 18px;
     }
 
     li {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      color: var(--text-muted);
       font-size: 0.95rem;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    li strong {
       color: var(--text);
     }
 
+    /* Grid for Skills */
     .skills-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      font-size: 0.95rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
     }
 
-    .skill-category {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
     }
 
-    @media (min-width: 600px) {
-      .skill-category {
-        flex-direction: row;
-        gap: 8px;
-      }
-    }
-
-    .skill-name {
+    .skill-label {
+      font-size: 0.85rem;
       font-weight: 600;
-      min-width: 170px;
-      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      margin-bottom: 8px;
     }
 
-    .skill-items {
+    .skill-value {
+      font-size: 0.92rem;
       color: var(--text-muted);
+      line-height: 1.5;
     }
 
-    @media (max-width: 600px) {
-      .container {
-        padding: 24px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .item-header {
-        flex-direction: column;
-      }
-      .item-date {
-        margin-top: 2px;
-      }
+    /* Link Icons */
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-left: 8px;
+      transition: opacity 0.2s;
+    }
+
+    .link-btn:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 650px) {
+      .hero { padding: 24px; }
+      h1 { font-size: 2rem; }
+      .card-header { flex-direction: column; }
+      .date-badge { align-self: flex-start; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <header>
+    
+    <!-- Hero / Header -->
+    <header class="hero">
       <h1>Joshua Ware</h1>
+      <div class="hero-subtitle">B.S. in Computer Science • Systems & Software</div>
+      <p style="color: var(--text-muted); max-width: 600px;">
+        Computer Science student at NJIT focused on full-stack web applications, distributed systems, and network infrastructure.
+      </p>
+
       <div class="contact-bar">
-        <span>Fort Lee, NJ</span>
-        <span>•</span>
-        <a href="mailto:jware31402@gmail.com">jware31402@gmail.com</a>
-        <span>•</span>
-        <a href="tel:5512029660">551-202-9660</a>
-        <span>•</span>
-        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-        <span>•</span>
-        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:jware31402@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          jware31402@gmail.com
+        </a>
+        <a class="btn" href="tel:5512029660">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          551-202-9660
+        </a>
+        <a class="btn" href="https://github.com/jware692" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://linkedin.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.6 1.6 0 0 0-1.6 1.6 1.6 1.6 0 0 0 1.6 1.6 1.6 1.6 0 0 0 1.6-1.6 1.6 1.6 0 0 0-1.6-1.6z"/></svg>
+          LinkedIn
+        </a>
       </div>
     </header>
 
+    <!-- Projects Section -->
     <section>
-      <h2>Education</h2>
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">New Jersey Institute of Technology</div>
-          <div class="item-date">2023 – 2026</div>
-        </div>
-        <div class="item-subtitle">B.S. in Computer Science | Minor in Information Technology</div>
-        <div class="tech-stack">Newark, NJ</div>
-      </div>
-    </section>
+      <div class="section-title">Featured Projects</div>
 
-    <section>
-      <h2>Projects</h2>
-
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">
-            AI-Powered Job Application Assistance Platform
-            <a href="https://github.com/jware692/CS490" target="_blank" rel="noopener">[Link]</a>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            AI-Powered Job Application Platform
+            <a class="link-btn" href="https://github.com/jware692/CS490" target="_blank" rel="noopener">
+              View Code ↗
+            </a>
           </div>
-          <div class="item-date">July 2026</div>
+          <span class="date-badge">July 2026</span>
         </div>
-        <div class="tech-stack">React, TypeScript, Python, FastAPI, SQLAlchemy, SQLite</div>
+        <div class="tag-container">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">SQLAlchemy</span>
+          <span class="tag">SQLite</span>
+        </div>
         <ul>
-          <li>Developed a full-stack SaaS application utilizing AI algorithms to analyze job descriptions and dynamically synthesize customized resumes and cover letters.</li>
-          <li>Architected a unified relational database schema and central management system to securely persist user profiles, historical submissions, and application artifacts.</li>
-          <li>Implemented modular data persistence pipelines to handle real-time frontend state management, historical data visualization, and application tracking metrics.</li>
+          <li>Developed a full-stack SaaS platform analyzing job requirements to dynamically synthesize customized resumes and cover letters.</li>
+          <li>Architected a unified relational database schema to securely persist user profiles, historical submissions, and application artifacts.</li>
+          <li>Implemented modular persistence pipelines handling real-time frontend state management and application tracking metrics.</li>
         </ul>
       </div>
 
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">
-            System Integration Project
-            <a href="https://github.com/jware692/IT490" target="_blank" rel="noopener">[Link]</a>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            Distributed Systems Integration Project
+            <a class="link-btn" href="https://github.com/jware692/CS490" target="_blank" rel="noopener">
+              View Code ↗
+            </a>
           </div>
+          <span class="date-badge">2026</span>
         </div>
-        <div class="tech-stack">Linux, Apache, PHP, MySQL, RabbitMQ, Bash</div>
+        <div class="tag-container">
+          <span class="tag">Linux</span>
+          <span class="tag">Apache</span>
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">RabbitMQ</span>
+          <span class="tag">Bash</span>
+        </div>
         <ul>
-          <li>Developed a multi-VM distributed system (webserver, API, worker) using Linux, Apache, PHP, MySQL, and RabbitMQ.</li>
-          <li>Automated background worker scripts using systemd and Bash for reliable message consumption.</li>
-          <li>Managed Linux services, firewall rules, permissions, logging, and VM networking.</li>
-          <li>Collaborated through Git, issue tracking, and Linux-based development workflows.</li>
+          <li>Engineered a multi-VM distributed architecture (webserver, API, worker) running message queue workflows via RabbitMQ.</li>
+          <li>Automated background worker daemons with <strong>systemd</strong> and Bash scripts for reliable asynchronous message processing.</li>
+          <li>Configured VM networking, local firewall policies (UFW/iptables), user permissions, and unified logging.</li>
         </ul>
       </div>
 
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">Machine Learning Projects</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Machine Learning Foundations</div>
+          <span class="date-badge">Academic</span>
         </div>
-        <div class="tech-stack">Python, NumPy</div>
+        <div class="tag-container">
+          <span class="tag">Python</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Data Analysis</span>
+        </div>
         <ul>
-          <li>Implemented logistic regression and perceptron models from scratch using NumPy.</li>
-          <li>Visualized decision regions and analyzed convergence behavior across parameters.</li>
-          <li>Compared accuracy and performance across multiple datasets.</li>
+          <li>Implemented Logistic Regression and Perceptron classification models from scratch using vectorized NumPy calculations.</li>
+          <li>Visualized high-dimensional decision boundaries and evaluated convergence rates across learning rates and epochs.</li>
         </ul>
       </div>
 
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">SADAL Language Parser (Compiler Project)</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">SADAL Language Compiler Parser</div>
+          <span class="date-badge">Academic</span>
         </div>
-        <div class="tech-stack">C++</div>
-        <ul>
-          <li>Built a lexical analyzer and recursive-descent parser in C++ for a custom language.</li>
-          <li>Implemented tokenization, grammar validation, and structured error handling.</li>
-          <li>Debugged pointer logic, memory behavior, and multi-file integration during development.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2>Work Experience</h2>
-
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">Network Lab Assistant</div>
-          <div class="item-date">2020 – 2023</div>
+        <div class="tag-container">
+          <span class="tag">C++</span>
+          <span class="tag">Compilers</span>
+          <span class="tag">Grammar Parsing</span>
         </div>
-        <div class="item-subtitle">NJIT</div>
         <ul>
-          <li>Configured Layer-2 switches, routers, and assisted in maintaining lab network infrastructure.</li>
-          <li>Built T-568B cables and punchdown boards; supported hands-on networking exercises for students.</li>
-        </ul>
-      </div>
-
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">Front of House / Cashier</div>
-          <div class="item-date">2020 – 2023</div>
-        </div>
-        <div class="item-subtitle">Marty's Burgers</div>
-        <ul>
-          <li>Handled high-volume customer transactions and provided first-line support.</li>
-          <li>Trained 7 new employees in POS usage, communication, and workflow efficiency.</li>
+          <li>Constructed a custom lexical analyzer and recursive-descent syntax parser for a bespoke programming grammar.</li>
+          <li>Engineered custom tokenization routines, concrete syntax trees, structured syntax errors, and pointer-safe memory management.</li>
         </ul>
       </div>
     </section>
 
+    <!-- Technical Skills -->
     <section>
-      <h2>Skills</h2>
+      <div class="section-title">Technical Expertise</div>
       <div class="skills-grid">
-        <div class="skill-category">
-          <span class="skill-name">Languages:</span>
-          <span class="skill-items">Java, C++, C, Python</span>
+        <div class="skill-card">
+          <div class="skill-label">Languages</div>
+          <div class="skill-value">Java, C++, C, Python, TypeScript, JavaScript, PHP, Bash/Shell</div>
         </div>
-        <div class="skill-category">
-          <span class="skill-name">Scripting:</span>
-          <span class="skill-items">PHP, JavaScript, Bash/Shell, TypeScript</span>
+        <div class="skill-card">
+          <div class="skill-label">Frameworks & Tools</div>
+          <div class="skill-value">React, FastAPI, SQLAlchemy, NumPy, Apache, RabbitMQ, Git</div>
         </div>
-        <div class="skill-category">
-          <span class="skill-name">Databases & Dev Tools:</span>
-          <span class="skill-items">MySQL, SQLite, SQLAlchemy, Git, RabbitMQ, Apache</span>
+        <div class="skill-card">
+          <div class="skill-label">Databases & OS</div>
+          <div class="skill-value">MySQL, SQLite • Linux (Ubuntu, Kali), Windows, macOS</div>
         </div>
-        <div class="skill-category">
-          <span class="skill-name">Operating Systems:</span>
-          <span class="skill-items">Windows, Linux (Ubuntu), macOS, Kali Linux</span>
-        </div>
-        <div class="skill-category">
-          <span class="skill-name">Frameworks:</span>
-          <span class="skill-items">React, FastAPI, NumPy</span>
-        </div>
-        <div class="skill-category">
-          <span class="skill-name">Tools:</span>
-          <span class="skill-items">Network Configuration, Cisco IOS, MS Office, Google Workspace</span>
-        </div>
-        <div class="skill-category">
-          <span class="skill-name">Security & Testing:</span>
-          <span class="skill-items">Cryptography (AES/RSA), Application Security (OWASP Top 10/SQLi/XSS), Firewalls</span>
+        <div class="skill-card">
+          <div class="skill-label">Security & Infrastructure</div>
+          <div class="skill-value">Cisco IOS, Layer-2 Switching, Firewalls, Cryptography (AES/RSA), OWASP Top 10</div>
         </div>
       </div>
     </section>
+
+    <!-- Experience & Education Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+      
+      <section>
+        <div class="section-title">Education</div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">New Jersey Institute of Tech</div>
+            <span class="date-badge">2023 – 2026</span>
+          </div>
+          <p style="color: var(--primary); font-weight: 500; font-size: 0.95rem;">B.S. in Computer Science</p>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 2px;">Minor in Information Technology • Newark, NJ</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Experience</div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Network Lab Assistant</div>
+            <span class="date-badge">2020 – 2023</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">NJIT</p>
+          <ul>
+            <li>Configured Layer-2 switches and routers; maintained testing labs and structured cabling (T-568B).</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Front of House / Cashier</div>
+            <span class="date-badge">2020 – 2023</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">Marty's Burgers</p>
+          <ul>
+            <li>Trained 7 incoming team members on workflow and point-of-sale systems.</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+
   </div>
 
 </body>
