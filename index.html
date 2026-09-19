@@ -400,6 +400,30 @@
         display: none;
       }
     }
+    
+    @media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt;
+  }
+  .sidebar-nav, 
+  #themeToggle, 
+  .btn, 
+  .theme-toggle-container {
+    display: none !important;
+  }
+  .card {
+    border: 1px solid #ccc !important;
+    background: none !important;
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+  a {
+    text-decoration: none !important;
+    color: #000000 !important;
+  }
+}
   </style>
 </head>
   <!-- Social Media & Search Meta Tags -->
