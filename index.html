@@ -359,7 +359,7 @@
     .sidebar-nav {
       position: fixed;
       top: 100px;
-      left: calc(50% - 440px - 180px); /* Aligns just to the left of your 880px container */
+      left: calc(50% - 440px - 180px);
       width: 150px;
       display: flex;
       flex-direction: column;
@@ -387,14 +387,14 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    .sidebar-nav a:hover {
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
       color: var(--primary);
       border-left-color: var(--primary);
-      padding-left: 12px;
+      padding-left: 14px;
       background: rgba(255, 255, 255, 0.02);
     }
 
-    /* Hide sidebar automatically on smaller screens */
     @media (max-width: 1280px) {
       .sidebar-nav {
         display: none;
@@ -737,31 +737,36 @@ Type help() to view available console commands.
     Object.defineProperty(window, 'contact', { get: () => consoleContact, configurable: true });
 
     // Scroll Spy for Left Sidebar Table of Contents
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const id = entry.target.getAttribute("id");
-        const link = document.querySelector(`.sidebar-nav a[href="#${id}"]`);
-        if (!link) return;
+  const navLinks = document.querySelectorAll(".sidebar-nav a");
+  const sections = document.querySelectorAll("section[id]");
 
-        if (entry.isIntersecting) {
-          document.querySelectorAll(".sidebar-nav a").forEach((a) => {
-            a.style.color = "var(--text-muted)";
-            a.style.borderLeftColor = "var(--card-border)";
-            a.style.paddingLeft = "8px";
-          });
-          link.style.color = "var(--primary)";
-          link.style.borderLeftColor = "var(--primary)";
-          link.style.paddingLeft = "14px";
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
+  function updateActiveNav() {
+    let currentId = "";
+    const scrollPosition = window.scrollY + 180; // Trigger threshold from top of screen
 
-  document.querySelectorAll("section[id]").forEach((section) => {
-    observer.observe(section);
-  });
+    sections.forEach((section) => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollPosition >= top && scrollPosition < top + height) {
+        currentId = section.getAttribute("id");
+      }
+    });
+
+    // Fallback: If scrolled all the way to bottom, activate the last section
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+      currentId = "beyond";
+    }
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${currentId}`) {
+        link.classList.add("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", updateActiveNav, { passive: true });
+  updateActiveNav(); // Run once on page load
   </script>
 </body>
 </html>
