@@ -25,6 +25,25 @@
       --tag-text: #7dd3fc;
     }
 
+    /* Terminal CRT Theme */
+    body.terminal-mode {
+      --bg: #050d08;
+      --card-bg: rgba(6, 22, 12, 0.88);
+      --card-border: rgba(34, 197, 94, 0.3);
+      --card-hover: rgba(10, 32, 18, 0.95);
+      --primary: #22c55e;
+      --primary-glow: rgba(34, 197, 94, 0.2);
+      --text: #86efac;
+      --text-muted: #4ade80;
+      --tag-bg: rgba(34, 197, 94, 0.15);
+      --tag-text: #22c55e;
+      font-family: 'JetBrains Mono', monospace;
+      background-image: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background-size: 100% 3px, 6px 100%;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -41,6 +60,7 @@
         radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
         radial-gradient(circle at 85% 65%, rgba(99, 102, 241, 0.06) 0%, transparent 40%);
       background-attachment: fixed;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .container {
@@ -70,12 +90,41 @@
       background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
     }
 
+    body.terminal-mode .hero::before {
+      background: linear-gradient(90deg, #22c55e, #16a34a, #15803d);
+    }
+
+    .terminal-toggle {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .terminal-toggle:hover {
+      background: var(--primary-glow);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
     h1 {
       font-size: 2.5rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       color: #ffffff;
       margin-bottom: 6px;
+    }
+
+    body.terminal-mode h1 {
+      color: #86efac;
     }
 
     .hero-subtitle {
@@ -105,6 +154,8 @@
       border-radius: 8px;
       text-decoration: none;
       transition: all 0.2s ease;
+      cursor: pointer;
+      font-family: inherit;
     }
 
     .btn:hover {
@@ -135,6 +186,10 @@
       gap: 12px;
     }
 
+    body.terminal-mode .section-title {
+      color: #86efac;
+    }
+
     .section-title::after {
       content: "";
       flex: 1;
@@ -158,6 +213,10 @@
       transform: translateY(-2px);
     }
 
+    body.terminal-mode .card:hover {
+      border-color: rgba(34, 197, 94, 0.5);
+    }
+
     .card-header {
       display: flex;
       justify-content: space-between;
@@ -171,6 +230,10 @@
       font-size: 1.15rem;
       font-weight: 600;
       color: #ffffff;
+    }
+
+    body.terminal-mode .card-title {
+      color: #86efac;
     }
 
     .date-badge {
@@ -264,10 +327,11 @@
     }
 
     @media (max-width: 650px) {
-      .hero { padding: 24px; }
+      .hero { padding: 24px; padding-top: 60px; }
       h1 { font-size: 2rem; }
       .card-header { flex-direction: column; }
       .date-badge { align-self: flex-start; }
+      .terminal-toggle { top: 16px; right: 16px; }
     }
   </style>
 </head>
@@ -277,17 +341,27 @@
     
     <!-- Hero / Header -->
     <header class="hero">
+      <button class="terminal-toggle" id="themeToggle" onclick="toggleTerminalMode()">
+        &gt;_ terminal mode
+      </button>
+
       <h1>Joshua Ware</h1>
       <div class="hero-subtitle">B.S. in Computer Science • Systems & Software</div>
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; color: var(--primary); margin-bottom: 14px;">
+      <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>
+        Currently: Preparing for Industry-Sponsored Capstone (NJIT CS 491)
+      </div>
       <p style="color: var(--text-muted); max-width: 600px;">
         Computer Science student at NJIT focused on full-stack web applications, distributed systems, network infrastructure, and cybersecurity.
       </p>
 
       <div class="contact-bar">
-        <a class="btn" href="mailto:jware31402@gmail.com">
+        <!-- Interactive Click-to-Copy Email -->
+        <button class="btn" id="copyEmailBtn" onclick="copyEmail()">
           <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          jware31402@gmail.com
-        </a>
+          <span id="emailBtnText">jware31402@gmail.com</span>
+        </button>
+
         <a class="btn" href="tel:5512029660">
           <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
           551-202-9660
@@ -296,13 +370,13 @@
           <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           GitHub
         </a>
-        <a class="btn" href="www.linkedin.com/in/joshua-ware-9b8848286" target="_blank" rel="noopener">
+        <a class="btn" href="https://www.linkedin.com/in/joshua-ware-9b8848286" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.6 1.6 0 0 0-1.6 1.6 1.6 1.6 0 0 0 1.6 1.6 1.6 1.6 0 0 0 1.6-1.6 1.6 1.6 0 0 0-1.6-1.6z"/></svg>
           LinkedIn
         </a>
         <a class="btn" href="JoshuaWareResume.pdf" download>
-        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-        Download Resume PDF
+          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Download Resume PDF
         </a>
       </div>
     </header>
@@ -340,7 +414,7 @@
         <div class="card-header">
           <div class="card-title">
             Distributed Systems Integration Project
-            <a class="link-btn" href="https://github.com/jware692/CS490" target="_blank" rel="noopener">
+            <a class="link-btn" href="https://github.com/jware692/IT490" target="_blank" rel="noopener">
               View Code ↗
             </a>
           </div>
@@ -418,9 +492,9 @@
     </section>
 
     <!-- Experience & Education Grid -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px;">
       
-      <section>
+      <section style="margin-bottom: 0;">
         <div class="section-title">Education</div>
         <div class="card">
           <div class="card-header">
@@ -436,7 +510,7 @@
         </div>
       </section>
 
-      <section>
+      <section style="margin-bottom: 0;">
         <div class="section-title">Experience</div>
         <div class="card">
           <div class="card-header">
@@ -451,16 +525,6 @@
 
         <div class="card">
           <div class="card-header">
-            <div class="card-title">Front of House / Cashier</div>
-            <span class="date-badge">2020 – 2023</span>
-          </div>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">Marty's Burgers</p>
-          <ul>
-            <li>Trained 7 incoming team members on workflow and point-of-sale systems.</li>
-          </ul>
-        </div>
-       <div class="card">
-          <div class="card-header">
             <div class="card-title">Math Instructor / Tutor</div>
             <span class="date-badge">May 2025 – Sep 2026</span>
           </div>
@@ -471,11 +535,75 @@
             <li>Developed strong communication and mentoring skills by guiding students through challenging coursework and fostering academic independence.</li>
           </ul>
         </div>
-      </section>
 
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Front of House / Cashier</div>
+            <span class="date-badge">2020 – 2023</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">Marty's Burgers</p>
+          <ul>
+            <li>Trained 7 incoming team members on workflow and point-of-sale systems.</li>
+          </ul>
+        </div>
+      </section>
+      
     </div>
 
+    <!-- Beyond the Terminal Section (Full Width) -->
+    <section>
+      <div class="section-title">Beyond the Terminal</div>
+      <div class="card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <div>
+          <h3 style="font-size: 1rem; color: #fff; margin-bottom: 6px;">🎮 Esports Leadership</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+            Assistant Captain for NJIT's collegiate Rainbow Six Siege team. Lead tactical prep, execute mid-round shotcalling, and maintain high-pressure team coordination.
+          </p>
+        </div>
+        <div>
+          <h3 style="font-size: 1rem; color: #fff; margin-bottom: 6px;">⚾ Competitive Athletics</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+            3-year varsity letterman in Bowling and Baseball; active adult league competitor. Driven by consistency, mechanical precision, and collaborative accountability.
+          </p>
+        </div>
+        <div>
+        <h3 style="font-size: 1rem; color: #fff; margin-bottom: 6px;">📊 Sports Analytics</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Passionate baseball and hockey follower with an eye for deep sabermetrics, efficiency ratings, and situational win-probability data.
+        </p>
+      </div>
+      </div>
+    </section>
+
   </div>
+
+  <script>
+    function copyEmail() {
+      const email = "jware31402@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        const textSpan = document.getElementById("emailBtnText");
+        const originalText = textSpan.innerText;
+        textSpan.innerText = "Copied to clipboard!";
+        setTimeout(() => {
+          textSpan.innerText = originalText;
+        }, 2000);
+      });
+    }
+
+    function toggleTerminalMode() {
+      document.body.classList.toggle("terminal-mode");
+      const btn = document.getElementById("themeToggle");
+      if (document.body.classList.contains("terminal-mode")) {
+        btn.innerHTML = "&gt;_ exit terminal";
+        btn.style.borderColor = "#22c55e";
+        btn.style.color = "#22c55e";
+      } else {
+        btn.innerHTML = "&gt;_ terminal mode";
+        btn.style.borderColor = "";
+        btn.style.color = "";
+      }
+    }
+  </script>
 
 </body>
 </html>
