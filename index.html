@@ -650,27 +650,31 @@ Type help() to view available console commands.
     "color: #38bdf8; font-family: monospace; font-size: 8.5px; line-height: 1.1; font-weight: bold;"
   );
 
-  window.help = () => {
-    console.table([
-      { command: "bio()", description: "Learn more about my technical background" },
-      { command: "skills()", description: "Print technical stacks & toolsets" },
-      { command: "contact()", description: "Print direct contact information" }
-    ]);
-    return "💡 Try executing one of the commands above!";
-  };
+  // Developer Console Easter Egg Functions
+    const consoleBio = "CS student at NJIT focused on distributed systems, Linux environments, full-stack applications, and network infrastructure.";
+    const consoleSkills = "Java, C/C++, Python, TypeScript, Linux (Ubuntu/Kali), RabbitMQ, Apache, MySQL, FastAPI, React";
+    const consoleContact = "Email: jware31402@gmail.com | Phone: 551-202-9660 | GitHub: github.com/jware692";
 
-  window.bio = () => {
-    return "CS student at NJIT focused on distributed systems, Linux environments, full-stack applications, and network infrastructure.";
-  };
+    function showHelp() {
+      console.table([
+        { command: "bio", description: "Learn more about my technical background" },
+        { command: "skills", description: "Print technical stacks & toolsets" },
+        { command: "contact", description: "Print direct contact information" }
+      ]);
+      return "💡 Type bio, skills, or contact to run them!";
+    }
 
-  window.skills = () => {
-    return "Java, C/C++, Python, TypeScript, Linux (Ubuntu/Kali), RabbitMQ, Apache, MySQL, FastAPI, React";
-  };
+    // Supports running WITH parentheses: help(), bio(), skills(), contact()
+    window.help = showHelp;
+    window.bio = () => consoleBio;
+    window.skills = () => consoleSkills;
+    window.contact = () => consoleContact;
 
-  window.contact = () => {
-    return "Email: jware31402@gmail.com | Phone: 551-202-9660 | GitHub: github.com/jware692";
-  };
+    // Supports running WITHOUT parentheses: help, bio, skills, contact
+    Object.defineProperty(window, 'help', { get: showHelp, configurable: true });
+    Object.defineProperty(window, 'bio', { get: () => consoleBio, configurable: true });
+    Object.defineProperty(window, 'skills', { get: () => consoleSkills, configurable: true });
+    Object.defineProperty(window, 'contact', { get: () => consoleContact, configurable: true });
   </script>
-
 </body>
 </html>
