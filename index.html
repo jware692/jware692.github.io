@@ -350,6 +350,56 @@
       padding: 4px;
       flex-shrink: 0;
     }
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Fixed Left Sidebar Navigation */
+    .sidebar-nav {
+      position: fixed;
+      top: 100px;
+      left: calc(50% - 440px - 180px); /* Aligns just to the left of your 880px container */
+      width: 150px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .sidebar-nav .nav-label {
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .sidebar-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 4px 8px;
+      border-left: 2px solid var(--card-border);
+      transition: all 0.2s ease;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .sidebar-nav a:hover {
+      color: var(--primary);
+      border-left-color: var(--primary);
+      padding-left: 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Hide sidebar automatically on smaller screens */
+    @media (max-width: 1280px) {
+      .sidebar-nav {
+        display: none;
+      }
+    }
   </style>
 </head>
   <!-- Social Media & Search Meta Tags -->
@@ -362,6 +412,16 @@
   <meta name="twitter:description" content="Explore my projects in distributed systems, full-stack engineering, and systems architectures." />
 <body>
 
+  <!-- Desktop Fixed Table of Contents -->
+  <nav class="sidebar-nav" aria-label="Table of Contents">
+    <div class="nav-label">// Navigate</div>
+    <a href="#projects">01. Projects</a>
+    <a href="#skills">02. Skills</a>
+    <a href="#education">03. Education</a>
+    <a href="#experience">04. Experience</a>
+    <a href="#beyond">05. Beyond</a>
+  </nav>
+  
   <div class="container">
     
     <!-- Hero / Header -->
@@ -407,7 +467,7 @@
     </header>
 
     <!-- Projects Section -->
-    <section>
+      <section id="projects">
       <div class="section-title">Featured Projects</div>
 
       <div class="card">
@@ -494,7 +554,7 @@
     </section>
 
     <!-- Technical Skills -->
-    <section>
+    <section id="skills">
       <div class="section-title">Technical Expertise</div>
       <div class="skills-grid">
         <div class="skill-card">
@@ -519,7 +579,7 @@
     <!-- Experience & Education Grid -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px;">
       
-      <section style="margin-bottom: 0;">
+      <section id="education" style="margin-bottom: 0;">
         <div class="section-title">Education</div>
        <div class="card">
           <div class="card-header">
@@ -540,7 +600,7 @@
           </p>
         </div>
 
-      <section style="margin-bottom: 0;">
+      <section id="experience" style="margin-bottom: 0;">
         <div class="section-title">Experience</div>
         <div class="card">
           <div class="card-header">
@@ -581,7 +641,7 @@
     </div>
 
     <!-- Beyond the Terminal Section (Full Width) -->
-    <section>
+    <section id="beyond">
       <div class="section-title">Beyond the Terminal</div>
       <div class="card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
         <div>
