@@ -11,6 +11,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+  <!-- Social Media & Search Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Joshua Ware | Software & Systems Engineer" />
+  <meta property="og:description" content="B.S. in Computer Science at NJIT. Focus on distributed systems, Linux infrastructure, full-stack development, and cybersecurity." />
+  <meta property="og:url" content="https://jware692.github.io" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Joshua Ware | Software & Systems Engineer" />
+  <meta name="twitter:description" content="Explore my projects in distributed systems, full-stack engineering, and systems architectures." />
+
   <style>
     :root {
       --bg: #0b0f19;
@@ -333,6 +342,7 @@
       .date-badge { align-self: flex-start; }
       .terminal-toggle { top: 16px; right: 16px; }
     }
+
     /* Logo / Avatar Styles */
     .header-with-logo {
       display: flex;
@@ -350,6 +360,7 @@
       padding: 4px;
       flex-shrink: 0;
     }
+
     /* Smooth Scroll */
     html {
       scroll-behavior: smooth;
@@ -401,39 +412,32 @@
       }
     }
     
+    /* Print-Friendly Stylesheet */
     @media print {
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-    font-size: 11pt;
-  }
-  .sidebar-nav, 
-  #themeToggle, 
-  .btn, 
-  .theme-toggle-container {
-    display: none !important;
-  }
-  .card {
-    border: 1px solid #ccc !important;
-    background: none !important;
-    break-inside: avoid;
-    box-shadow: none !important;
-  }
-  a {
-    text-decoration: none !important;
-    color: #000000 !important;
-  }
-}
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+      }
+      .sidebar-nav, 
+      #themeToggle, 
+      .btn, 
+      .theme-toggle-container {
+        display: none !important;
+      }
+      .card {
+        border: 1px solid #ccc !important;
+        background: none !important;
+        break-inside: avoid;
+        box-shadow: none !important;
+      }
+      a {
+        text-decoration: none !important;
+        color: #000000 !important;
+      }
+    }
   </style>
 </head>
-  <!-- Social Media & Search Meta Tags -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Joshua Ware | Software & Systems Engineer" />
-  <meta property="og:description" content="B.S. in Computer Science at NJIT. Focus on distributed systems, Linux infrastructure, full-stack development, and cybersecurity." />
-  <meta property="og:url" content="https://jware692.github.io" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Joshua Ware | Software & Systems Engineer" />
-  <meta name="twitter:description" content="Explore my projects in distributed systems, full-stack engineering, and systems architectures." />
 <body>
 
   <!-- Desktop Fixed Table of Contents -->
@@ -457,12 +461,22 @@
       <h1>Joshua Ware</h1>
       <div class="hero-subtitle">B.S. in Computer Science • Systems & Software</div>
       <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; color: var(--primary); margin-bottom: 14px;">
-      <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>
+        <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>
         Currently: Preparing for Industry-Sponsored Capstone (NJIT CS 491)
       </div>
       <p style="color: var(--text-muted); max-width: 600px;">
         Computer Science student at NJIT focused on full-stack web applications, distributed systems, network infrastructure, and cybersecurity.
       </p>
+
+      <!-- Hero Machine & Diagnostic Status -->
+      <div id="hero-diagnostics" style="display: flex; flex-wrap: wrap; gap: 16px; margin: 18px 0 24px 0; padding: 10px 14px; background: rgba(0, 0, 0, 0.25); border: 1px solid var(--card-border); border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-muted); align-items: center;">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; display: inline-block;"></span>
+          <span>Node: <strong style="color: var(--text);">NJIT Systems</strong></span>
+        </div>
+        <div>OS: <strong style="color: var(--text);">Linux / Dual-Boot</strong></div>
+        <div>Status: <strong style="color: var(--primary);">Open to Opportunities</strong></div>
+      </div>
 
       <div class="contact-bar">
         <!-- Interactive Click-to-Copy Email -->
@@ -491,7 +505,7 @@
     </header>
 
     <!-- Projects Section -->
-      <section id="projects">
+    <section id="projects">
       <div class="section-title">Featured Projects</div>
 
       <div class="card">
@@ -537,6 +551,45 @@
           <span class="tag">RabbitMQ</span>
           <span class="tag">Bash</span>
         </div>
+        
+        <!-- Interactive Architecture Pipeline Simulator -->
+        <div id="pipeline-simulator" style="background: rgba(0,0,0,0.4); border: 1px solid var(--card-border); border-radius: 8px; padding: 14px; margin: 16px 0; font-family: 'JetBrains Mono', monospace;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Interactive Cluster Pipeline</span>
+            <button id="simBtn" onclick="runPipelineSim()" style="background: rgba(56, 189, 248, 0.08); border: 1px solid var(--primary); color: var(--primary); padding: 4px 10px; border-radius: 4px; font-family: inherit; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease;">
+              ▶ Run Test Message
+            </button>
+          </div>
+
+          <!-- Topology Nodes -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; font-size: 0.72rem;">
+            <div id="node-web" style="padding: 8px 4px; border: 1px solid var(--card-border); border-radius: 6px; background: rgba(255,255,255,0.02); transition: all 0.3s ease;">
+              <div style="color: var(--text); font-weight: 600;">Web VM</div>
+              <div style="color: var(--text-muted); font-size: 0.65rem;">Apache/PHP</div>
+              <div class="status-text" style="color: #64748b; font-size: 0.68rem; margin-top: 4px;">Idle</div>
+            </div>
+            <div id="node-queue" style="padding: 8px 4px; border: 1px solid var(--card-border); border-radius: 6px; background: rgba(255,255,255,0.02); transition: all 0.3s ease;">
+              <div style="color: var(--text); font-weight: 600;">Broker VM</div>
+              <div style="color: var(--text-muted); font-size: 0.65rem;">RabbitMQ</div>
+              <div class="status-text" style="color: #64748b; font-size: 0.68rem; margin-top: 4px;">Idle</div>
+            </div>
+            <div id="node-worker" style="padding: 8px 4px; border: 1px solid var(--card-border); border-radius: 6px; background: rgba(255,255,255,0.02); transition: all 0.3s ease;">
+              <div style="color: var(--text); font-weight: 600;">Worker VM</div>
+              <div style="color: var(--text-muted); font-size: 0.65rem;">Daemon</div>
+              <div class="status-text" style="color: #64748b; font-size: 0.68rem; margin-top: 4px;">Idle</div>
+            </div>
+            <div id="node-db" style="padding: 8px 4px; border: 1px solid var(--card-border); border-radius: 6px; background: rgba(255,255,255,0.02); transition: all 0.3s ease;">
+              <div style="color: var(--text); font-weight: 600;">DB VM</div>
+              <div style="color: var(--text-muted); font-size: 0.65rem;">MySQL</div>
+              <div class="status-text" style="color: #64748b; font-size: 0.68rem; margin-top: 4px;">Idle</div>
+            </div>
+          </div>
+
+          <div id="simLog" style="margin-top: 10px; font-size: 0.7rem; color: var(--text-muted); height: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            System idle. Click "Run Test Message" to trace routing.
+          </div>
+        </div>
+
         <ul>
           <li>Engineered a multi-VM distributed architecture (webserver, API, worker) running message queue workflows via RabbitMQ.</li>
           <li>Automated background worker daemons with systemd and Bash scripts for reliable asynchronous message processing.</li>
@@ -605,7 +658,7 @@
       
       <section id="education" style="margin-bottom: 0;">
         <div class="section-title">Education</div>
-       <div class="card">
+        <div class="card">
           <div class="card-header">
             <div class="header-with-logo">
               <img class="org-logo" src="assets/njit-logo.png.webp" alt="NJIT Logo" />
@@ -623,6 +676,7 @@
             <strong style="color: var(--text);">Key Coursework:</strong> Operating Systems, Intensive Linux Programming, Computer Systems & Networks, Systems Integration, Software Engineering Design, Introduction to Cryptography, Cybersecurity, Machine Learning
           </p>
         </div>
+      </section>
 
       <section id="experience" style="margin-bottom: 0;">
         <div class="section-title">Experience</div>
@@ -685,11 +739,11 @@
           </p>
         </div>
         <div>
-        <h3 style="font-size: 1rem; color: #fff; margin-bottom: 6px;">📊 Sports Analytics</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
-          Passionate baseball and hockey follower with an eye for deep sabermetrics, efficiency ratings, and situational win-probability data.
-        </p>
-      </div>
+          <h3 style="font-size: 1rem; color: #fff; margin-bottom: 6px;">📊 Sports Analytics</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+            Passionate baseball and hockey follower with an eye for deep sabermetrics, efficiency ratings, and situational win-probability data.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -723,8 +777,8 @@
     }
 
     // Developer Console Easter Egg
-  console.log(
-    `%c
+    console.log(
+      `%c
      ██╗ ██████╗ ███████╗██╗  ██╗██╗   ██╗ █████╗     ██╗    ██╗ █████╗ ██████╗ ███████╗
      ██║██╔═══██╗██╔════╝██║  ██║██║   ██║██╔══██╗    ██║    ██║██╔══██╗██╔══██╗██╔════╝
      ██║██║   ██║███████╗███████║██║   ██║███████║    ██║ █╗ ██║███████║██████╔╝█████╗  
@@ -735,10 +789,10 @@
 Joshua Ware — Systems & Software Portfolio
 Type help() to view available console commands.
 `,
-    "color: #38bdf8; font-family: monospace; font-size: 8.5px; line-height: 1.1; font-weight: bold;"
-  );
+      "color: #38bdf8; font-family: monospace; font-size: 8.5px; line-height: 1.1; font-weight: bold;"
+    );
 
-  // Developer Console Easter Egg Functions
+    // Developer Console Easter Egg Functions
     const consoleBio = "CS student at NJIT focused on distributed systems, Linux environments, full-stack applications, and network infrastructure.";
     const consoleSkills = "Java, C/C++, Python, TypeScript, Linux (Ubuntu/Kali), RabbitMQ, Apache, MySQL, FastAPI, React";
     const consoleContact = "Email: jware31402@gmail.com | Phone: 551-202-9660 | GitHub: github.com/jware692";
@@ -764,37 +818,100 @@ Type help() to view available console commands.
     Object.defineProperty(window, 'skills', { get: () => consoleSkills, configurable: true });
     Object.defineProperty(window, 'contact', { get: () => consoleContact, configurable: true });
 
-    // Scroll Spy for Left Sidebar Table of Contents
-  const navLinks = document.querySelectorAll(".sidebar-nav a");
-  const sections = document.querySelectorAll("section[id]");
+    // Pipeline Simulator Logic
+    function runPipelineSim() {
+      const btn = document.getElementById("simBtn");
+      const log = document.getElementById("simLog");
+      const nodes = {
+        web: document.getElementById("node-web"),
+        queue: document.getElementById("node-queue"),
+        worker: document.getElementById("node-worker"),
+        db: document.getElementById("node-db")
+      };
 
-  function updateActiveNav() {
-    let currentId = "";
-    const scrollPosition = window.scrollY + 180; // Trigger threshold from top of screen
+      if (!btn || !log || !nodes.web) return;
 
-    sections.forEach((section) => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      if (scrollPosition >= top && scrollPosition < top + height) {
-        currentId = section.getAttribute("id");
-      }
-    });
+      btn.disabled = true;
+      btn.style.opacity = "0.5";
 
-    // Fallback: If scrolled all the way to bottom, activate the last section
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-      currentId = "beyond";
+      const setNodeState = (node, text, color) => {
+        node.style.borderColor = color;
+        const status = node.querySelector(".status-text");
+        if (status) {
+          status.innerText = text;
+          status.style.color = color;
+        }
+      };
+
+      const resetNodes = () => {
+        Object.values(nodes).forEach(n => setNodeState(n, "Idle", "var(--card-border)"));
+      };
+
+      // Stage 1: Web VM Dispatches
+      resetNodes();
+      setNodeState(nodes.web, "Publishing...", "#38bdf8");
+      log.innerText = "[WEB] Dispatched JSON payload via AMQP (Port 5672)...";
+
+      // Stage 2: RabbitMQ Broker Queues
+      setTimeout(() => {
+        setNodeState(nodes.web, "Sent", "#22c55e");
+        setNodeState(nodes.queue, "Routing...", "#eab308");
+        log.innerText = "[QUEUE] Exchange matched binding key 'task.process'. Buffered.";
+      }, 700);
+
+      // Stage 3: Worker Daemon Consumes
+      setTimeout(() => {
+        setNodeState(nodes.queue, "Acked", "#22c55e");
+        setNodeState(nodes.worker, "Executing...", "#38bdf8");
+        log.innerText = "[WORKER] Dequeued payload. Running systemd service routine...";
+      }, 1400);
+
+      // Stage 4: MySQL Persistence
+      setTimeout(() => {
+        setNodeState(nodes.worker, "Done", "#22c55e");
+        setNodeState(nodes.db, "Writing...", "#eab308");
+        log.innerText = "[DB] Executing SQL transaction: INSERT INTO logs VALUES (...);";
+      }, 2100);
+
+      // Stage 5: Complete & Reset
+      setTimeout(() => {
+        setNodeState(nodes.db, "Committed", "#22c55e");
+        log.innerText = "[SUCCESS] Transaction completed. Round trip: 38ms.";
+        btn.disabled = false;
+        btn.style.opacity = "1";
+      }, 2800);
     }
 
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${currentId}`) {
-        link.classList.add("active");
-      }
-    });
-  }
+    // Scroll Spy for Left Sidebar Table of Contents
+    const navLinks = document.querySelectorAll(".sidebar-nav a");
+    const sections = document.querySelectorAll("section[id]");
 
-  window.addEventListener("scroll", updateActiveNav, { passive: true });
-  updateActiveNav(); // Run once on page load
+    function updateActiveNav() {
+      let currentId = "";
+      const scrollPosition = window.scrollY + 180;
+
+      sections.forEach((section) => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPosition >= top && scrollPosition < top + height) {
+          currentId = section.getAttribute("id");
+        }
+      });
+
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        currentId = "beyond";
+      }
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${currentId}`) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveNav, { passive: true });
+    updateActiveNav();
   </script>
 </body>
 </html>
