@@ -735,6 +735,33 @@ Type help() to view available console commands.
     Object.defineProperty(window, 'bio', { get: () => consoleBio, configurable: true });
     Object.defineProperty(window, 'skills', { get: () => consoleSkills, configurable: true });
     Object.defineProperty(window, 'contact', { get: () => consoleContact, configurable: true });
+
+    // Scroll Spy for Left Sidebar Table of Contents
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        const link = document.querySelector(`.sidebar-nav a[href="#${id}"]`);
+        if (!link) return;
+
+        if (entry.isIntersecting) {
+          document.querySelectorAll(".sidebar-nav a").forEach((a) => {
+            a.style.color = "var(--text-muted)";
+            a.style.borderLeftColor = "var(--card-border)";
+            a.style.paddingLeft = "8px";
+          });
+          link.style.color = "var(--primary)";
+          link.style.borderLeftColor = "var(--primary)";
+          link.style.paddingLeft = "14px";
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  document.querySelectorAll("section[id]").forEach((section) => {
+    observer.observe(section);
+  });
   </script>
 </body>
 </html>
